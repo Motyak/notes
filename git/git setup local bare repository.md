@@ -1,4 +1,4 @@
-﻿
+
 Init a git repository
 ```terminal
 $ mkdir local; cd $_
