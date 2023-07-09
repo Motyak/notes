@@ -1,5 +1,7 @@
 
-# bash
+# HOW TO execute / source script in different languages
+
+## bash:
 the `script.sh` file:
 ```bash
 #!/usr/bin/env bash
@@ -44,14 +46,42 @@ fi
 
 ---
 
-### perl:
+## perl:
+the `script.pl` file:
 ```perl
-// TODO
+#!/usr/bin/env perl
+
+package script;
+
+our $a_public_variable;
+my $a_private_variable;
+
+sub do_stuff {
+    ;
+}
+
+unless(caller) {
+    # main body
+}
+```
+
+how to import the script from another script:
+```perl
+require './script.pl' # the main body ISNT executed
+# now do_stuff is defined locally as script::do_stuff()
+script::do_stuff()
+print $script::a_public_variable;
+```
+
+how to execute the script from a shell (sh/bash/...):
+```bash
+./script.pl # the main body IS executed
+# obviously the perl functions arent exported to the shell
 ```
 
 ---
 
-### python:
+## python:
 
 the `script.py` file:
 ```python
