@@ -8,7 +8,7 @@ the `script.sh` file:
 
 # defining a function that can be sourced
 function do_stuff {
-	:
+    :
 }
 
 if [ "${BASH_SOURCE[0]}" == "$0" ]; then
@@ -33,14 +33,14 @@ do_stuff
 to prevent functions in a script from being imported when our script is called, we can unset our functions at the end of our script:
 ```bash
 function do_stuff {
-	:
+    :
 }
 
 if [ "${BASH_SOURCE[0]}" == "$0" ]; then
     # main body that probably uses our local functions
     # ...
 
-	unset do_stuff # the caller wont need the function so lets undefine it before exiting
+    unset do_stuff # the caller wont need the function so lets undefine it before exiting
 fi
 ```
 
@@ -91,7 +91,7 @@ def do_stuff():
     pass
 
 if __name__ == "__main__":
-	# main body
+    # main body
     pass
 ```
 

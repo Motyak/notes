@@ -58,10 +58,10 @@ $
 bash script to do so using `sed` :
 ```bash
 function uri_to_filename {
-	sed -e 's/%/%25/g' \
-		-e 's/\//%2f/g' \
-		-e 's/:/%3a/g' \
-		-e 's/?/%3f/g' \
-		-e 's/\*/%2a/g' <<< "$@"
+    sed -e 's/%/%25/g' \
+        -e 's/\//%2f/g' \
+        -e 's/:/%3a/g' \
+        -e 's/?/%3f/g' \
+        -e 's/\*/%2a/g' <<< "$@"
 }
 ```
