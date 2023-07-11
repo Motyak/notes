@@ -45,7 +45,7 @@ our $a_public_variable;
 my $a_private_variable;
 
 sub do_stuff {
-    ;
+    1;
 }
 
 unless(caller) {
@@ -56,9 +56,10 @@ unless(caller) {
 how to import the script from another script:
 ```perl
 require './script.pl' # the main body ISNT executed
-# now do_stuff is defined locally as script::do_stuff()
-script::do_stuff()
-print $script::a_public_variable;
+# now script::do_stuff() and script::a_public_variable are defined locally
+script::do_stuff() and defined($script::a_public_variable)
+                   and !defined($script::a_private_variable)
+                   and print("do_stuff and a_public_variable are both defined, a_private_variable is not\n");
 ```
 
 how to execute the script from a shell (sh/bash/...):
@@ -75,6 +76,8 @@ the `script.py` file:
 ```python
 #!/usr/bin/env python3
 
+a_variable="some value"
+
 def do_stuff():
     pass
 
@@ -86,8 +89,9 @@ if __name__ == "__main__":
 how to import the script from another script or the python interactive REPL:
 ```python
 import script # the main body ISNT executed
-# now do_stuff is defined locally as script.do_stuff()
-script.do_stuff()
+# now script.do_stuff and script.a_variable are defined locally
+if script.do_stuff() and hasattr(script, "a_variable"):
+    print("do_stuff and a_variable are both defined")
 ```
 
 how to execute the script from a shell (sh/bash/...):
