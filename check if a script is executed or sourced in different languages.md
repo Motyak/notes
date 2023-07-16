@@ -57,7 +57,7 @@ how to import the script from another script:
 ```perl
 require './script.pl' # the main body ISNT executed
 # now script::do_stuff() and script::a_public_variable are defined locally
-script::do_stuff() and defined($script::a_public_variable)
+$script::do_stuff() and defined($script::a_public_variable)
                    and !defined($script::a_private_variable)
                    and print("do_stuff and a_public_variable are both defined, a_private_variable is not\n");
 ```
