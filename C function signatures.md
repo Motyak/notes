@@ -30,18 +30,18 @@ A variable that holds an address of a variable.
 (int*, size_t) <-- (array, scalar)
 
 
-/* pass an array of int pointers as input */
-(const int* const *, size_t) <-- (array, scalar)
-
-/* pass an array of int pointers as input/output */
-(const int**, size_t) <-- (array, scalar)
-
-
 /* pass an int pointer as input */
 (const int*) <-- (pointer)
 
 /* pass an int pointer as input/output */
 (const int**) <-- (&pointer)
+
+
+/* pass an array of int pointers as input */
+(const int* const *, size_t) <-- (array, scalar)
+
+/* pass an array of int pointers as input/output */
+(const int**, size_t) <-- (array, scalar)
 
 
 /* pass an int array pointer as input */
@@ -237,6 +237,80 @@ int main()
 }
 ```
 
+## `(const int*) <-- (pointer)`
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+
+void as_is(const int* inner) {
+    int* new_pointer = malloc(sizeof(int));
+    inner = new_pointer;
+} 
+
+int main()
+{
+    int* outer = malloc(sizeof(int));
+    printf("%p\n", outer); // 0x7ffe43dac4e0
+    as_is(outer);
+    printf("%p\n", outer); // 0x7ffe43dac4e0 (same)
+}
+```
+
+```c
+#include <stdlib.h>
+
+void deref(const int* inner) {
+    *inner = 777; // compilation error
+} 
+```
+
+## `(const int**) <-- (&pointer)`
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+
+void as_is(const int** inner) {
+    int* new_pointer = malloc(sizeof(int));
+    inner = &new_pointer;
+} 
+
+int main()
+{
+    int* outer = malloc(sizeof(int));
+    printf("%p\n", outer); // 0x5632391922a0
+    as_is(&outer);
+    printf("%p\n", outer); // 0x5632391922a0 (same)
+}
+```
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+
+void deref(const int** inner) {
+    int* new_pointer = malloc(sizeof(int));
+    *inner = new_pointer;
+}
+
+int main()
+{
+    int* outer = malloc(sizeof(int));
+    printf("%p\n", outer); // 0x56176a8562a0
+    deref(&outer);
+    printf("%p\n", outer); // 0x56176a8566d0
+}
+```
+
+```c
+#include <stdlib.h>
+
+void deref_deref(const int** inner) {
+    **inner = 777;
+}
+```
+
 ## `(const int* const *, size_t) <-- (array, scalar)`
 
 ```c
@@ -335,80 +409,6 @@ int main()
 void deref_deref(const int** inner, size_t) {
     *inner[0] = 20; // compilation error
     *inner[1] = 21; // ..
-}
-```
-
-## `(const int*) <-- (pointer)`
-
-```c
-#include <stdlib.h>
-#include <stdio.h>
-
-void as_is(const int* inner) {
-    int* new_pointer = malloc(sizeof(int));
-    inner = new_pointer;
-} 
-
-int main()
-{
-    int* outer = malloc(sizeof(int));
-    printf("%p\n", outer); // 0x7ffe43dac4e0
-    as_is(outer);
-    printf("%p\n", outer); // 0x7ffe43dac4e0 (same)
-}
-```
-
-```c
-#include <stdlib.h>
-
-void deref(const int* inner) {
-    *inner = 777; // compilation error
-} 
-```
-
-## `(const int**) <-- (&pointer)`
-
-```c
-#include <stdlib.h>
-#include <stdio.h>
-
-void as_is(const int** inner) {
-    int* new_pointer = malloc(sizeof(int));
-    inner = &new_pointer;
-} 
-
-int main()
-{
-    int* outer = malloc(sizeof(int));
-    printf("%p\n", outer); // 0x5632391922a0
-    as_is(&outer);
-    printf("%p\n", outer); // 0x5632391922a0 (same)
-}
-```
-
-```c
-#include <stdlib.h>
-#include <stdio.h>
-
-void deref(const int** inner) {
-    int* new_pointer = malloc(sizeof(int));
-    *inner = new_pointer;
-}
-
-int main()
-{
-    int* outer = malloc(sizeof(int));
-    printf("%p\n", outer); // 0x56176a8562a0
-    deref(&outer);
-    printf("%p\n", outer); // 0x56176a8566d0
-}
-```
-
-```c
-#include <stdlib.h>
-
-void deref_deref(const int** inner) {
-    **inner = 777;
 }
 ```
 
