@@ -111,7 +111,7 @@ int main()
 {
     int outer = 10;
     printf("%d\n", outer); // 10
-    function(outer);
+    as_is(outer);
     printf("%d\n", outer); // 10
 }
 ```
