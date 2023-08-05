@@ -446,8 +446,8 @@ void deref(const int* const *inner) {
 #include <stdlib.h>
 
 void deref_deref(const int* const *inner) {
-    (*inner)[0] =20; // compilation error
-    (*inner)[0] =21; // ..
+    (*inner)[0] = 20; // compilation error
+    (*inner)[0] = 21; // ..
 }
 ```
 
@@ -495,7 +495,7 @@ int main()
 #include <stdlib.h>
 
 void deref_deref(const int** inner) {
-    (*inner)[0] =20; // compilation error
-    (*inner)[0] =21; // ..
+    (*inner)[0] = 20; // compilation error
+    (*inner)[0] = 21; // ..
 }
 ```
