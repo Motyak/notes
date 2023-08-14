@@ -51,28 +51,6 @@ A variable that holds an address.
 (const int**) <-- (&pointer)
 ```
 
-
-# EXTRA (specific use cases, mostly mistakes)
-
-Careful on these signatures if you use them without knowing why, make sure it makes sense.
-
-```c
-/* pass an array of int pointers as input, BUT you are allowed to mutate int variables value as well */
-(int* const *, size_t)
-
-/* pass an int pointer as input/output AND you are allowed to mutate int variable value as well */
-(int**)
-
-/* pass an array of int pointers as input/output AND you are allowed to mutate int variables value as well */
-(int**, size_t)
-
-
-
-/* pass an int pointer pointer as input, BUT you are allowed to mutate int variable value as well */
-(int* const *)
-```
-
-
 # DUMB "good" practice (don't do it)
 
 Placing the const modifier after pointer types in functions prototype :
