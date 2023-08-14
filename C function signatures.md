@@ -2,16 +2,16 @@
 # My definition of terms I use
 
 ## variable
-A memory location in which we can store data. Either a scalar, an array or a pointer.
+Allocated memory that holds data (bytes), identified by an address.
 
 ## scalar
-A variable that contain a single unit of data (as opposed to an array), also not a pointer.
+A variable that holds a single unit of data, which is not an address.
 
 ## array
-A variable that may contain multiple units of data of a same type. Has a known fixed size.
+A variable that holds multiple units of data of a same type. Has a know fixed size.
 
 ## pointer
-A variable that holds an address of a variable.
+A variable that holds an address.
 
 # SIMPLE
 
