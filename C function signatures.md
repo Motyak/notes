@@ -285,7 +285,7 @@ int main()
 #include <stdlib.h>
 
 void deref_deref(const int** inner) {
-    **inner = 777;
+    **inner = 777; // compilation error
 }
 ```
 
