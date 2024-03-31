@@ -482,38 +482,38 @@ void deref_deref(const int** inner) {
 
 ```c
 /* function pointer that takes an int as input and return a modified int */
-int (*func)(int)
+int (*)(int)
 
 /* function pointer that takes an int as input/output */
-void (*func)(int*)
+void (*)(int*)
 
 
 /* function pointer that takes an array of ints as input and return a modified int array */
-int* (*func)(const int*, size_t)
+int* (*)(const int*, size_t)
 
 /* function pointer that takes an array of ints as input/output */
-void (*func)(int*, size_t)
+void (*)(int*, size_t)
 
 
 /* function pointer that takes an int pointer as input and return a modified int pointer */
-int* (*func)(const int*)
+int* (*)(const int*)
 
 /* function pointer that takes an int pointer as input/output */
-void (*func)(int*)
+void (*)(int*)
 
 
 /* function pointer that takes an array of int pointers as input and return a modified array of int pointers */
-int** (*func)(const int* const *, size_t)
+int** (*)(const int* const *, size_t)
 
 /* function pointer that takes an array of int pointers as input/output */
-void (*func)(const int**, size_t)
+void (*)(const int**, size_t)
 
 
 /* function pointer that takes an int array pointer as input and return a modified int array pointer */
-int** (*func)(const int* const *)
+int** (*)(const int* const *)
 
 /* function pointer that takes an int array pointer as input/output */
-void (*func)(const int**)
+void (*)(const int**)
 ```
 
 # EXAMPLES
