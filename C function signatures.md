@@ -477,3 +477,98 @@ void deref_deref(const int** inner) {
     (*inner)[0] = 21; // ..
 }
 ```
+
+# PASSING FUNCTION AS ARGUMENT (FUNCTION POINTERS)
+
+```c
+/* function pointer that takes an int as input and return a modified int */
+int (*func)(int)
+
+/* function pointer that takes an int as input/output */
+void (*func)(int*)
+
+
+/* function pointer that takes an array of ints as input and return a modified int array */
+int* (*func)(const int*, size_t)
+
+/* function pointer that takes an array of ints as input/output */
+void (*func)(int*, size_t)
+
+
+/* function pointer that takes an int pointer as input and return a modified int pointer */
+int* (*func)(const int*)
+
+/* function pointer that takes an int pointer as input/output */
+void (*func)(int*)
+
+
+/* function pointer that takes an array of int pointers as input and return a modified array of int pointers */
+int** (*func)(const int* const *, size_t)
+
+/* function pointer that takes an array of int pointers as input/output */
+void (*func)(const int**, size_t)
+
+
+/* function pointer that takes an int array pointer as input and return a modified int array pointer */
+int** (*func)(const int* const *)
+
+/* function pointer that takes an int array pointer as input/output */
+void (*func)(const int**)
+```
+
+# EXAMPLES
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// update passed array
+void foreach(int*, size_t, void (*)(int*));
+
+// creates a new array 
+int* map(const int*, size_t, int (*)(int));
+
+int times2(int x) {
+    return x * 2;
+}
+
+void times2_inplace(int* x) {
+    *x *= 2;
+}
+
+void printeach(const int* arr, size_t arr_len) {
+    for (int i = 0; i < arr_len; ++i) {
+        printf("#%d: %d\n", i, arr[i]);
+    }
+}
+
+int main()
+{
+    int arr[3];
+    arr[0] = 1;
+    arr[1] = 2;
+    arr[2] = 3;
+    
+    foreach(arr, 3, times2_inplace);
+    printeach(arr, 3);
+    
+    printf("======\n");
+    
+    int* new_arr = map(arr, 3, times2);
+    printeach(new_arr, 3);
+}
+
+void foreach(int* arr, size_t arr_len, void (*func)(int*)) {
+    for (int i = 0; i < arr_len; ++i) {
+        func(arr + i);
+    }
+}
+
+int* map(const int* arr, size_t arr_len, int (*func)(int)) {
+    int* new_arr = malloc(sizeof(int) * arr_len);
+    for (int i = 0; i < arr_len; ++i) {
+        new_arr[i] = func(arr[i]);
+    }
+    return new_arr;
+}
+```
