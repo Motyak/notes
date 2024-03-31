@@ -550,12 +550,12 @@ int main()
     arr[2] = 3;
     
     foreach(arr, 3, times2_inplace);
-    printeach(arr, 3);
+    printeach(arr, 3); // 2 4 6
     
     printf("======\n");
     
     int* new_arr = map(arr, 3, times2);
-    printeach(new_arr, 3);
+    printeach(new_arr, 3); // 4 8 12
 }
 
 void foreach(int* arr, size_t arr_len, void (*func)(int*)) {
