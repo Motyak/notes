@@ -135,6 +135,14 @@ when we execute the script, this is what is printed :
 
 ---
 
+```bash
+## duplicate stdout to stderr ##
+exec 6>&1 > >(tee /dev/stderr)
+trap 'exec 1>&6 6>&-' EXIT
+```
+
+---
+
 # Appendix: a substantial runnable bash script with examples to learn from
 
 ```bash
