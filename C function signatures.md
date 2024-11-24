@@ -572,3 +572,19 @@ int* map(const int* arr, size_t arr_len, int (*func)(int)) {
     return new_arr;
 }
 ```
+# NOT SO SIMPLE
+```
+Depending on the computer architecture and data model :
+
+- Endianness
+  -> should we read a scalar data bytes from left to right or the opposite ?
+
+- Pointer/size_t size
+  -> Is an address stored on 4 bytes or 8 bytes ?
+  -> What is the maximum number of elements an array can contain ?
+
+Also:
+
+Struct alignment
+  -> unless explicitly "packed", a struct size isn't always the sum of the members type size
+```
