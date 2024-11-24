@@ -5,7 +5,7 @@
 Allocated memory that holds data (bytes), identified by an address.
 
 ## scalar
-A variable that holds a single unit of data (1 times n bytes), which is not an address.
+A variable that holds a single unit of data (1 times n bytes).
 
 ## array
 A variable that holds multiple units of data of a same type (m times n bytes). Has a know fixed size.
