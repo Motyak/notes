@@ -22,8 +22,9 @@ $ git clone remote.git -o local2 # no need to setup origin or upstream
 Update the first repository to use the bare repository as remote origin and setup upstream branch
 ```terminal
 $ cd local
-$ git branch -vv
+$ git remote -v
 $ git add remote origin ../remote.git # add remote origin
 $ git branch -u origin/master # set upstream to origin/master
+$ git remote -v
 $ git branch -vv
 ```
